@@ -39,3 +39,8 @@ exclude = '''
 
 [tool.isort]
 line_length = 119
+
+[tool.mypy]
+python_version = "3.14"
+# Укажи путь к директории, где находятся твои модули
+mypy_path = "src"

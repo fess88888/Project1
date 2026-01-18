@@ -29,6 +29,7 @@ no_implicit_optional = true
 warn_return_any = true
 exclude = 'venv'
 
+
 [tool.black]
 line-length = 119
 exclude = '''
@@ -39,8 +40,3 @@ exclude = '''
 
 [tool.isort]
 line_length = 119
-
-[tool.mypy]
-python_version = "3.14"
-# Укажи путь к директории, где находятся твои модули
-mypy_path = "src"

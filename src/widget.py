@@ -1,4 +1,4 @@
-from masks import get_mask_account, get_mask_card_number # type: ignore
+from masks import get_mask_account, get_mask_card_number  # type: ignore
 
 
 def mask_account_card(account_or_card_number: str) -> str:
@@ -12,10 +12,10 @@ def mask_account_card(account_or_card_number: str) -> str:
             name_card_or_account += letter
     if account_or_card_number.startswith("Счет"):
         account_number = int(account_or_card_number[5:])
-        return name_card_or_account + get_mask_account(account_number)
+        return str(name_card_or_account + get_mask_account(account_number))
     else:
         card_number = int(account_or_card_number[-16:])
-        return name_card_or_account + get_mask_card_number(card_number)
+        return str(name_card_or_account + get_mask_card_number(card_number))
 
 
 def get_date(long_date: str) -> str:

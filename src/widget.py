@@ -20,7 +20,7 @@ def mask_account_card(account_or_card_number: str) -> str:
 
 def get_date(long_date: str) -> str:
     """Функция, которая принимает на вход строку с датой в формате "2024-03-11T02:26:18.671407"
-     и возвращает строку с датой в формате "ДД.ММ.ГГГГ" ("11.03.2024")"""
+    и возвращает строку с датой в формате "ДД.ММ.ГГГГ" ("11.03.2024")"""
 
     short_date = long_date[0:10].replace("-", ".")
     date = short_date[-2:] + short_date[4:7] + "." + short_date[0:4]

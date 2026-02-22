@@ -55,8 +55,7 @@ def test_get_empty_account() -> None:
     assert str(exc_info.value) == "Номер счета должен содержать только цифры и не быть пустым"
 
 
-@pytest.mark.parametrize("incorrect_account, expected", [(123, "**123"),
-                                                    ("6", "**6")])
+@pytest.mark.parametrize("incorrect_account, expected", [(123, "**123"), ("6", "**6")])
 def test_get_incorrect_account(incorrect_account: int | str, expected: str) -> None:
     """Введен короткий номер"""
     assert get_mask_account(incorrect_account) == expected

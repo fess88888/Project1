@@ -1,11 +1,12 @@
 import pytest
 from src.widget import mask_account_card, get_date
 
+
 @pytest.mark.parametrize("account_card, expected", [
     ("Visa Platinum 7000792289606361", "Visa Platinum 7000 79** **** 6361"),
     ("Счет 73654108430135874305", "Счет **4305"),
     ("Maestro 1596837868705199", "Maestro 1596 83** **** 5199"),
-    ("Visa Gold 5999414228426353", "Visa Gold 5999 41** **** 6353"),
+    ("Visa Gold 5999414228426353", "Visa Gold 5999 41** **** 6353")
 ])
 def test_mask_account_card(account_card: str, expected: str) -> None:
     assert mask_account_card(account_card) == expected
@@ -24,10 +25,10 @@ def test_ask_account_card_empty() -> None:
     ("2025-12-31T23:59:59.999999", "31.12.2025"),
 ])
 def test_get_date_various_formats(input_date: str, expected: str) -> None:
-        assert get_date(input_date) == expected
+    assert get_date(input_date) == expected
 
 
-def  test_get_date_empty() -> None:
+def test_get_date_empty() -> None:
     """Введена пустая строка"""
     with pytest.raises(ValueError) as exc_info:
         get_date("")

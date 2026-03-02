@@ -34,9 +34,9 @@ def test_get_empty_card_number() -> None:
     assert str(exc_info.value) == "Номер карты должен содержать 16 цифр."
 
 
-@pytest.mark.parametrize("mask_account, expected", [(12345678912345678912, "**8912"),
-                                                    ("5656565656", "**5656"),
-                                                    (4444, "**4444")])
+@pytest.mark.parametrize(
+    "mask_account, expected", [(12345678912345678912, "**8912"), ("5656565656", "**5656"), (4444, "**4444")]
+)
 def test_get_mask_account(mask_account: int | str, expected: str) -> None:
     assert get_mask_account(mask_account) == expected
 

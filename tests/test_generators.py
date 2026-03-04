@@ -1,6 +1,6 @@
 import pytest
 
-from src.generators import card_number_generator, filter_by_currency
+from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
 
 
 @pytest.mark.parametrize(
@@ -82,3 +82,17 @@ def test_filter_by_currency_empty(transactions_: list[dict]) -> None:
     with pytest.raises(ValueError) as exc_info:
         list(filter_by_currency([], "EUD"))
     assert str(exc_info.value) == "Список транзакций пуст"
+
+
+def test_transaction_descriptions_empty(transactions_: list[dict]) -> None:
+    with pytest.raises(ValueError) as exc_info:
+        list(transaction_descriptions([]))
+    assert str(exc_info.value) == "Список транзакций пуст"
+
+
+def test_transaction_descriptions(transactions_: list[dict]) -> None:
+    result = list(transaction_descriptions(transactions_))
+    assert result == [
+        "Перевод организации", "Перевод со счета на счет", "Перевод со счета на счет",
+        "Перевод с карты на карту", "Перевод организации"
+    ]

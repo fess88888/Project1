@@ -22,9 +22,9 @@ def log(filename: str | None = None) -> Callable[[Callable[..., Any]], Callable[
             except Exception as e:
                 if filename:
                     with open(filename, "a", encoding="utf-8") as f:
-                        f.write(f"{func.__name__} error: {type(e).__name__}. Inputs: {args}, {kwargs}\n")
+                        f.write(f"Function: {func.__name__} error: {type(e).__name__}. Inputs: {args}, {kwargs}\n")
                 else:
-                    print(f"{func.__name__} error: {type(e).__name__}. Inputs: {args}, {kwargs}")
+                    print(f"Function: {func.__name__} error: {type(e).__name__}. Inputs: {args}, {kwargs}")
                 raise
 
         return wrapper

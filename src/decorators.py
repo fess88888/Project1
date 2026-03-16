@@ -1,6 +1,7 @@
 from functools import wraps
 from typing import Callable, Any
 
+
 def log(filename: str | None = None) -> Callable[[Callable[..., Any]], Callable[..., Any]]:
     """
     Декоратор, который логирует начало и конец выполнения функции, ее результаты или возникшие ошибки.
@@ -30,12 +31,3 @@ def log(filename: str | None = None) -> Callable[[Callable[..., Any]], Callable[
         return wrapper
 
     return my_decorator
-
-
-@log(filename="mylog.txt")
-# @log()
-def divide_function(x: float, y: float) -> float:
-    return x / y
-
-
-divide_function(4, 2)

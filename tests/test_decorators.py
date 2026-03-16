@@ -12,7 +12,7 @@ def divide_function(x: float, y: float) -> float:
     (3, 2, "Function: divide_function ok. Result: 1.5\n"),
     (1, 0, "Function: divide_function error: ZeroDivisionError. Inputs: (1, 0), {}\n")
 ])
-def test_log_to_console(capsys, x: float, y: float, expected_output: str):
+def test_log_to_console(capsys, x: float, y: float, expected_output: str) -> None:
     if y == 0:
         with pytest.raises(ZeroDivisionError):
             divide_function(x, y)

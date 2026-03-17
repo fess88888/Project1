@@ -1,7 +1,8 @@
 import json
+import os
 
 
-PATH_TO_FILE = r"C:\Users\fess8\PycharmProjects\MyProject_1\data\operations.json"
+PATH_TO_FILE = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "operations.json")
 
 
 def get_financial_transaction_data(path: str) -> list[dict]:

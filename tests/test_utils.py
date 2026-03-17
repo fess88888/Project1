@@ -1,8 +1,6 @@
 import json
 from unittest.mock import patch
-from src.utils import get_financial_transaction_data
-
-PATH_TO_FILE = r"C:\Users\fess8\PycharmProjects\MyProject_1\data\operations.json"
+from src.utils import get_financial_transaction_data, PATH_TO_FILE
 
 
 def test_valid_json_data() -> None:
@@ -34,7 +32,7 @@ def test_file_not_found() -> None:
 
 
 def test_json_decode_error() -> None:
-    """Тест для некорректного или пустого JSON."""
+    """Тест для некорректного JSON."""
     with patch('src.utils.json.load', side_effect=json.JSONDecodeError("Expecting value", "", 0)):
         result = get_financial_transaction_data("invalid.json")
 

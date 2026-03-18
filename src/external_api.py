@@ -14,10 +14,20 @@ def converting_currency(transaction: dict) -> float:
 
     amount = transaction.get("operationAmount", {}).get("amount")
     currency = transaction.get("operationAmount", {}).get("currency", {}).get("code")
+    if not amount:
+        raise ValueError("Field 'amount' is missing in transaction")
+    if not currency:
+        raise ValueError("Currency code is missing in transaction")
+
+    try:
+        amount = float(amount)
+    except ValueError:
+        raise ValueError(f"Invalid amount format: {amount}")
+
     if currency == "RUB":
         return float(amount)
     else:
-        date = transaction["date"][: 10]
+        date = transaction.get("date")[: 10]
         url = f"https://api.apilayer.com/exchangerates_data/convert?to=RUB&from={currency}&amount={amount}&date={date}"
         headers = {
             "apikey": API_KEY
@@ -29,55 +39,4 @@ def converting_currency(transaction: dict) -> float:
             return round(float(result), 2)
         except requests.exceptions.RequestException as err:
             print(f"An error occurred: {err}.")
-
-
-if __name__ == "__main__":
-    transactions = [
-        {
-            "id": 441945886,
-            "state": "EXECUTED",
-            "date": "2019-08-26T10:50:58.294041",
-            "operationAmount": {
-                "amount": "31957.58",
-                "currency": {
-                    "name": "руб.",
-                    "code": "RUB"
-                }
-            },
-            "description": "Перевод организации",
-            "from": "Maestro 1596837868705199",
-            "to": "Счет 64686473678894779589"
-        },
-        {
-            "id": 41428829,
-            "state": "EXECUTED",
-            "date": "2019-07-03T18:35:29.512364",
-            "operationAmount": {
-                "amount": "8221.37",
-                "currency": {
-                    "name": "USD",
-                    "code": "USD"
-                }
-            },
-            "description": "Перевод организации",
-            "from": "MasterCard 7158300734726758",
-            "to": "Счет 35383033474447895560"
-        },
-        {
-            "id": 939719570,
-            "state": "EXECUTED",
-            "date": "2018-06-30T02:08:58.425572",
-            "operationAmount": {
-                "amount": "9824.07",
-                "currency": {
-                    "name": "EUR",
-                    "code": "EUR"
-                }
-            },
-            "description": "Перевод организации",
-            "from": "Счет 75106830613657916952",
-            "to": "Счет 11776614605963066702"
-        }
-    ]
-    for transaction in transactions:
-        print(converting_currency(transaction))
+            return 0.0

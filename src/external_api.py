@@ -8,7 +8,7 @@ API_KEY = os.getenv("API_KEY")
 
 
 def converting_currency(transaction: dict) -> float:
-    """ Функция, которая принимает на вход транзакцию и возвращает сумму транзакции в рублях.
+    """Функция, которая принимает на вход транзакцию и возвращает сумму транзакции в рублях.
     Если транзакция была в USD или EUR, происходит обращение к внешнему API для получения текущего курса валют
     и конвертации суммы операции в рубли."""
 
@@ -27,11 +27,9 @@ def converting_currency(transaction: dict) -> float:
     if currency == "RUB":
         return float(amount)
     else:
-        date = transaction.get("date")[: 10]
+        date = transaction.get("date")[:10]
         url = f"https://api.apilayer.com/exchangerates_data/convert?to=RUB&from={currency}&amount={amount}&date={date}"
-        headers = {
-            "apikey": API_KEY
-        }
+        headers = {"apikey": API_KEY}
         try:
             exchange_rate = requests.get(url, headers=headers)
             exchange_rate.raise_for_status()

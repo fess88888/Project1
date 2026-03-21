@@ -29,7 +29,7 @@ def card_number_generator(start: int, stop: int) -> Generator[str, None, None]:
 
     for n in range(start, stop + 1):
         if 0 < start <= 9999999999999999 and 0 < stop <= 9999999999999999 and start <= stop:
-            number = "0"*(16 - len(str(n))) + str(n)
+            number = "0" * (16 - len(str(n))) + str(n)
             card_number = number[:4] + " " + number[4:8] + " " + number[8:12] + " " + number[12:]
             yield card_number
         else:

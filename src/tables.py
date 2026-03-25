@@ -1,6 +1,5 @@
 import pandas as pd
 import os
-import csv
 from typing import List, Dict, Any, Hashable
 
 
@@ -13,13 +12,11 @@ def read_financial_transactions_from_csv(path: str) -> List[Dict[Hashable, Any]]
     выдает список словарей с транзакциями."""
 
     try:
-        transactions_csv = pd.read_csv(path, delimiter=delimiter)
+        transactions_csv = pd.read_csv(path, delimiter=';')
         transactions_csv_list = transactions_csv.to_dict(orient='records')
         return transactions_csv_list
     except FileNotFoundError:
         raise FileNotFoundError(f"Файл не найден: {path}")
-    except csv.Error as e:
-        raise csv.Error(f"Ошибка при чтении CSV‑файла: {e}")
     except ValueError as e:
         raise ValueError(f"Проблема с содержимым файла: {e}")
 
@@ -39,8 +36,7 @@ def read_financial_transactions_from_excel(path: str) -> List[Dict[Hashable, Any
 
 
 if __name__ == '__main__':
-    delimiter = ';'
     tr_csv = read_financial_transactions_from_csv(PATH_TO_FILE_CSV)
-    print(tr_csv[: 3])
+    print(tr_csv[: 2])
     tr_excel = read_financial_transactions_from_excel(PATH_TO_FILE_EXCEL)
-    print(tr_excel[: 3])
+    print(tr_excel[: 2])

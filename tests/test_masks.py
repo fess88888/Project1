@@ -46,14 +46,14 @@ def test_get_wrong_account() -> None:
     """Введен номер состоящий из цифр, букв и других знаков"""
     with pytest.raises(ValueError) as exc_info:
         get_mask_account("123c45vsb67#89")
-    assert str(exc_info.value) == "Номер счета должен содержать только цифры и не быть пустым"
+    assert str(exc_info.value) == "Номер счёта должен содержать только цифры и не быть пустым"
 
 
 def test_get_empty_account() -> None:
     """Введен пустой номер"""
     with pytest.raises(ValueError) as exc_info:
         get_mask_account("")
-    assert str(exc_info.value) == "Номер счета должен содержать только цифры и не быть пустым"
+    assert str(exc_info.value) == "Номер счёта должен содержать только цифры и не быть пустым"
 
 
 @pytest.mark.parametrize("incorrect_account, expected", [(123, "**123"), ("6", "**6")])

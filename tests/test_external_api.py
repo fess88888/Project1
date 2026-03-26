@@ -1,7 +1,9 @@
+from unittest.mock import Mock, patch
+
 import pytest
 import requests
-from unittest.mock import patch, Mock
-from src.external_api import converting_currency, API_KEY
+
+from src.external_api import API_KEY, converting_currency
 
 
 def test_valid_converting_currency_rub() -> None:

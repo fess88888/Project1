@@ -1,6 +1,8 @@
-import pytest
+from unittest.mock import Mock, patch
+
 import pandas as pd
-from unittest.mock import patch, Mock
+import pytest
+
 from src.tables import read_financial_transactions_from_csv, read_financial_transactions_from_excel
 
 

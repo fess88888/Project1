@@ -1,6 +1,7 @@
 import json
 from unittest.mock import patch
-from src.utils import get_financial_transaction_data, PATH_TO_FILE
+
+from src.utils import PATH_TO_FILE, get_financial_transaction_data
 
 
 def test_valid_json_data() -> None:

@@ -1,7 +1,7 @@
-import pandas as pd
 import os
-from typing import List, Dict, Any, Hashable
+from typing import Any, Dict, Hashable, List
 
+import pandas as pd
 
 PATH_TO_FILE_CSV = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "transactions.csv")
 PATH_TO_FILE_EXCEL = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "transactions_excel.xlsx")

@@ -38,4 +38,4 @@ def get_financial_transaction_data(path: str) -> list[dict]:
 
 
 if __name__ == "__main__":
-    get_financial_transaction_data(PATH_TO_FILE)
+    print(get_financial_transaction_data(PATH_TO_FILE)[:4])

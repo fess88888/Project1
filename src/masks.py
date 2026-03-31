@@ -44,13 +44,14 @@ def get_mask_card_number(card_number: int | str) -> str:
     logger.info("Проверяем, что номер карты содержит только цифры и их шестнадцать.")
     if len(card_number_str) != 16:
         logger.error("Номер карты не содержит шестнадцать цифр. Получено: '{card_number}'")
-        raise ValueError("Номер карты должен содержать 16 цифр.")
+        return 'Не указан'
     elif not card_number_str.isdigit():
         logger.error(f"Номер карты должен содержать только цифры. Получено: '{card_number}'")
-        raise ValueError("Номер карты должен содержать только цифры.")
-    mask_card_number = card_number_str[0:4] + " " + card_number_str[4:6] + "** **** " + card_number_str[-4:]
-    logger.info(f"Получаем маску карты: {mask_card_number}")
-    return mask_card_number
+        return 'Не указан'
+    else:
+        mask_card_number = card_number_str[0:4] + " " + card_number_str[4:6] + "** **** " + card_number_str[-4:]
+        logger.info(f"Получаем маску карты: {mask_card_number}")
+        return mask_card_number
 
 
 if __name__ == "__main__":

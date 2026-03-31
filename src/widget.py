@@ -4,20 +4,22 @@ from src.masks import get_mask_account, get_mask_card_number
 def mask_account_card(account_or_card_number: str) -> str:
     """Функция, которая принимает на вход номер счета или тип и номер карты, и возвращает маску счета или карты"""
 
-    if account_or_card_number == "":
-        raise ValueError("Номер счета или тип и номер карты не должен быть пустым")
-    name_card_or_account = ""
-    for letter in account_or_card_number:
-        if letter.isalpha():
-            name_card_or_account += letter
-        elif letter == " ":
-            name_card_or_account += letter
-    if account_or_card_number.startswith("Счет"):
-        account_number = int(account_or_card_number[5:])
-        return str(name_card_or_account + get_mask_account(account_number))
+    input_str = str(account_or_card_number).strip()
+    if input_str.lower() in ('nan', 'none', 'null', '', 'не указан'):
+        return 'Не указан'
     else:
-        card_number = int(account_or_card_number[-16:])
-        return str(name_card_or_account + get_mask_card_number(card_number))
+        name_card_or_account = ""
+        for letter in input_str:
+            if letter.isalpha():
+                name_card_or_account += letter
+            elif letter == " ":
+                name_card_or_account += letter
+        if account_or_card_number.startswith("Счет"):
+            account_number_user = int(input_str[5:])
+            return str(name_card_or_account + get_mask_account(account_number_user))
+        else:
+            card_number_user = int(input_str[-16:])
+            return str(name_card_or_account + get_mask_card_number(card_number_user))
 
 
 def get_date(long_date: str) -> str:

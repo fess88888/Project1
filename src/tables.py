@@ -37,6 +37,6 @@ def read_financial_transactions_from_excel(path: str) -> List[Dict[Hashable, Any
 
 if __name__ == '__main__':
     tr_csv = read_financial_transactions_from_csv(PATH_TO_FILE_CSV)
-    print(tr_csv[: 2])
+    print(tr_csv[: 5])
     tr_excel = read_financial_transactions_from_excel(PATH_TO_FILE_EXCEL)
     print(tr_excel[: 2])
